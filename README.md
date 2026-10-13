@@ -20,7 +20,7 @@ Abrir <http://localhost:3000>. No hace falta configurar nada para desarrollo.
 | Usuario      | Contraseña | Rol           | Ve                                      |
 | ------------ | ---------- | ------------- | --------------------------------------- |
 | `superadmin` | `mas2026`  | Superadmin    | Panel, Solicitudes, Asociados, Usuarios |
-| `admin`      | `mas2026`  | Administrador | Solicitudes, Asociados                  |
+| `admin`      | `mas2026`  | Administrador | Panel, Solicitudes, Asociados           |
 
 También se puede ingresar con el correo (`admin@mas.org.ar`). Los datos mock se reinician al reiniciar el servidor.
 
@@ -92,6 +92,8 @@ src/
 **Responsive:** un solo árbol de componentes. Por debajo de `1024px` el shell cambia a top bar + bottom nav, las tablas a tarjetas, los drawers a bottom sheets y los modales se anclan abajo (todo por CSS, sin duplicar lógica).
 
 ## Reglas de negocio implementadas
+
+- **Panel:** es la pantalla de inicio de ambos roles. El superadmin ve el sistema completo (incluye usuarios del equipo). El administrador ve su panel operativo: asociados activos, pendientes con días de espera de la más antigua, altas del mes, rechazadas, accesos rápidos (incluye _Seguimiento de rechazadas_, que abre Solicitudes ya filtrado con `?estado=rechazada`) y la cola de _Solicitudes en espera_. Los datos de usuarios nunca se envían al administrador.
 
 - **Solicitudes:** cola FIFO de pendientes. _Aprobar_ crea el asociado con N.° de afiliado = año de alta + DNI, la saca de la cola y notifica por WhatsApp. No se puede aprobar un DNI que ya es asociado. _Rechazar_ deja la solicitud para seguimiento telefónico; _Volver a pendiente_ la reingresa.
 - **Asociados:** _Pausar / Mora_ exige motivo (falta de pago, en revisión, otro) y notifica; _Reactivar_; _Desactivar_ pasa al histórico sin borrar (pide confirmación). Carnet digital con QR, descarga en PNG y envío por WhatsApp (abre `wa.me` con el mensaje armado).

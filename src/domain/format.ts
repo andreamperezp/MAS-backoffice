@@ -55,6 +55,18 @@ export function hoyIso(ahora: Date = new Date()): string {
   return `${y}-${m}-${d}`;
 }
 
+/** Días completos transcurridos desde una fecha `YYYY-MM-DD` (0 si es hoy o futura). */
+export function diasDesde(iso: string, ahora: Date = new Date()): number {
+  const hoy = new Date(ahora.getFullYear(), ahora.getMonth(), ahora.getDate());
+  return Math.max(0, Math.round((hoy.getTime() - parseFecha(iso).getTime()) / 86_400_000));
+}
+
+/** `0` → `hoy` · `1` → `hace 1 día` · `5` → `hace 5 días` */
+export function haceDias(dias: number): string {
+  if (dias === 0) return 'hoy';
+  return `hace ${dias} ${dias === 1 ? 'día' : 'días'}`;
+}
+
 /** `Valeria Suárez` → `VS` */
 export function iniciales(nombre: string): string {
   const partes = nombre.trim().split(/\s+/);

@@ -4,6 +4,7 @@ import { PASSWORD_DEMO } from '@/server/mock/seed';
 import { repos } from '@/server/repositories';
 import { ejecutarAccionAsociado } from '@/server/services/asociados';
 import { autenticar } from '@/server/services/auth';
+import { obtenerResumenPanel } from '@/server/services/panel';
 import { ejecutarAccionSolicitud } from '@/server/services/solicitudes';
 import {
   actualizarUsuario,
@@ -70,6 +71,25 @@ describe('asociados', () => {
     await ejecutarAccionAsociado('A-0004', { accion: 'desactivar' });
     const { items } = await repos().asociados.listar({ estado: 'inactivo', segmento: 'todos' });
     expect(items.map((a) => a.id)).toContain('A-0004');
+  });
+});
+
+describe('panel', () => {
+  it('el administrador no recibe datos de usuarios del sistema', async () => {
+    const resumen = await obtenerResumenPanel('administrador');
+    expect(resumen.usuarios).toBeNull();
+    expect(resumen.usuariosRecientes).toBeNull();
+  });
+
+  it('muestra las pendientes más antiguas y cuenta las altas del mes', async () => {
+    const antes = await obtenerResumenPanel('superadmin');
+    expect(antes.usuarios?.activo).toBeGreaterThan(0);
+    expect(antes.solicitudesEnEspera.map((s) => s.id)).toEqual(['S-0231', 'S-0232', 'S-0233']);
+
+    await ejecutarAccionSolicitud('S-0231', 'aprobar');
+    const despues = await obtenerResumenPanel('administrador');
+    expect(despues.altasDelMes).toBe(antes.altasDelMes + 1);
+    expect(despues.solicitudesEnEspera[0].id).toBe('S-0232');
   });
 });
 

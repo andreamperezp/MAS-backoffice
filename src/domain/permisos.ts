@@ -2,7 +2,7 @@ import type { Rol } from './types';
 
 /** Secciones del backoffice y los roles que pueden verlas. */
 export const SECCIONES = {
-  panel: { href: '/panel', roles: ['superadmin'] },
+  panel: { href: '/panel', roles: ['superadmin', 'administrador'] },
   solicitudes: { href: '/solicitudes', roles: ['superadmin', 'administrador'] },
   asociados: { href: '/asociados', roles: ['superadmin', 'administrador'] },
   usuarios: { href: '/usuarios', roles: ['superadmin'] },
@@ -10,8 +10,9 @@ export const SECCIONES = {
 
 export type Seccion = keyof typeof SECCIONES;
 
-export function inicioPorRol(rol: Rol): string {
-  return rol === 'superadmin' ? SECCIONES.panel.href : SECCIONES.solicitudes.href;
+/** Todos los roles arrancan en el Panel (cada uno ve su versión). */
+export function inicioPorRol(_rol: Rol): string {
+  return SECCIONES.panel.href;
 }
 
 /** `null` si la ruta no pertenece a ninguna sección protegida. */

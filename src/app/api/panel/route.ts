@@ -3,6 +3,6 @@ import { ruta } from '@/server/http';
 import { obtenerResumenPanel } from '@/server/services/panel';
 
 export const GET = ruta(async () => {
-  await requerirUsuario(['superadmin']);
-  return Response.json(await obtenerResumenPanel());
+  const user = await requerirUsuario();
+  return Response.json(await obtenerResumenPanel(user.rol));
 });

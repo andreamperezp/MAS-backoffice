@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { asociadosACsv } from '@/domain/csv';
 import { filtrarAsociados, filtrarSolicitudes } from '@/domain/filters';
-import { formatDni, formatFecha, formatUltimoAcceso, numeroAfiliado } from '@/domain/format';
+import { diasDesde, formatDni, formatFecha, formatUltimoAcceso, haceDias, numeroAfiliado } from '@/domain/format';
 import { inicioPorRol, puedeVer, seccionDeRuta } from '@/domain/permisos';
 import { filtroAsociadosSchema, filtroSolicitudesSchema } from '@/domain/schemas';
 import type { Asociado, Solicitud } from '@/domain/types';
@@ -48,6 +48,14 @@ describe('format', () => {
 
   it('formatea fechas ISO sin corrimiento de huso horario', () => {
     expect(formatFecha('2026-09-01')).toBe('01 sep 2026');
+  });
+
+  it('calcula días de espera', () => {
+    const ahora = new Date(2026, 9, 13, 18, 30);
+    expect(diasDesde('2026-10-13', ahora)).toBe(0);
+    expect(diasDesde('2026-09-18', ahora)).toBe(25);
+    expect(haceDias(1)).toBe('hace 1 día');
+    expect(haceDias(0)).toBe('hoy');
   });
 
   it('describe el último acceso de forma relativa', () => {
@@ -107,8 +115,8 @@ describe('csv', () => {
 });
 
 describe('permisos', () => {
-  it('el administrador no ve Panel ni Usuarios', () => {
-    expect(puedeVer('panel', 'administrador')).toBe(false);
+  it('el administrador ve su Panel pero no Usuarios', () => {
+    expect(puedeVer('panel', 'administrador')).toBe(true);
     expect(puedeVer('usuarios', 'administrador')).toBe(false);
     expect(puedeVer('solicitudes', 'administrador')).toBe(true);
   });
@@ -117,6 +125,6 @@ describe('permisos', () => {
     expect(seccionDeRuta('/asociados')).toBe('asociados');
     expect(seccionDeRuta('/asociadosx')).toBeNull();
     expect(inicioPorRol('superadmin')).toBe('/panel');
-    expect(inicioPorRol('administrador')).toBe('/solicitudes');
+    expect(inicioPorRol('administrador')).toBe('/panel');
   });
 });
