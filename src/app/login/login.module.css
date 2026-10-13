@@ -1,0 +1,259 @@
+.page {
+  display: flex;
+  min-height: 100vh;
+  min-height: 100dvh;
+  background: var(--white);
+}
+
+/* ── Panel de marca ───────────────────────────────────────────────────────── */
+
+.brand {
+  width: 44%;
+  min-width: 520px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 40px;
+  padding: 56px;
+  overflow: hidden;
+  background: var(--teal);
+}
+
+.blob {
+  position: absolute;
+  pointer-events: none;
+}
+
+.blobTeal {
+  width: 250px;
+  height: 190px;
+  background: var(--teal-light);
+  border-radius: 60% 40% 45% 55% / 55% 60% 40% 45%;
+  transform: rotate(10deg);
+  top: -70px;
+  right: -80px;
+}
+
+.blobDot {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--yellow-light);
+  top: 150px;
+  right: 48px;
+}
+
+.blobGlow {
+  width: 340px;
+  height: 340px;
+  border-radius: 50%;
+  background: var(--yellow-light);
+  opacity: 0.35;
+  filter: blur(70px);
+  bottom: -150px;
+  right: -110px;
+}
+
+.logo {
+  position: relative;
+  display: block;
+  width: 176px;
+  height: 87px;
+}
+
+.pitch {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  max-width: 400px;
+}
+
+.headline {
+  font-size: 34px;
+  line-height: 1.2;
+  color: var(--white);
+}
+
+.mobileOnly {
+  display: none;
+}
+
+.beneficios {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.beneficios li {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.beneficios p {
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 14.5px;
+  padding-top: 5px;
+  line-height: 1.55;
+}
+
+.check {
+  width: 32px;
+  height: 32px;
+  border-radius: 9px;
+  background: rgba(255, 255, 255, 0.16);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.copyright {
+  position: relative;
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 12.5px;
+}
+
+/* ── Formulario ───────────────────────────────────────────────────────────── */
+
+.formPanel {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+}
+
+.formBox {
+  width: 100%;
+  max-width: 380px;
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+}
+
+.intro {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.eyebrow {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--teal-dark);
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.title {
+  font-size: 26px;
+  color: var(--dark);
+}
+
+.description {
+  color: var(--gray);
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.footnote {
+  text-align: center;
+  color: var(--placeholder);
+  font-size: 12px;
+}
+
+/* ── Mobile ───────────────────────────────────────────────────────────────── */
+
+@media (max-width: 1023px) {
+  .page {
+    flex-direction: column;
+  }
+
+  .brand {
+    width: auto;
+    min-width: 0;
+    padding: 28px 24px 34px;
+    background: var(--gray);
+    justify-content: flex-start;
+    gap: 0;
+  }
+
+  .blobTeal {
+    width: 150px;
+    height: 110px;
+    top: -44px;
+    right: -50px;
+  }
+
+  .blobDot {
+    width: 34px;
+    height: 34px;
+    top: 26px;
+    right: 104px;
+  }
+
+  .blobGlow {
+    width: 170px;
+    height: 170px;
+    opacity: 0.3;
+    filter: blur(40px);
+    bottom: -80px;
+    right: -50px;
+  }
+
+  .logo {
+    width: auto;
+    height: 60px;
+    margin-bottom: 18px;
+  }
+
+  .headline {
+    font-size: 22px;
+    line-height: 1.25;
+  }
+
+  .desktopOnly,
+  .beneficios,
+  .copyright,
+  .description {
+    display: none;
+  }
+
+  .mobileOnly {
+    display: inline;
+  }
+
+  .formPanel {
+    align-items: stretch;
+    padding: 28px 24px;
+  }
+
+  .formBox {
+    max-width: none;
+    gap: 22px;
+  }
+
+  .intro {
+    gap: 6px;
+  }
+
+  .eyebrow {
+    font-size: 12.5px;
+  }
+
+  .title {
+    font-size: 22px;
+  }
+
+  .footnote {
+    font-size: 11.5px;
+    margin-top: auto;
+  }
+}

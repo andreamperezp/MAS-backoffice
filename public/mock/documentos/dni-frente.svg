@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" font-family="system-ui, sans-serif">
+  <rect width="800" height="500" rx="24" fill="#eaf5f4"/>
+  <rect x="24" y="24" width="752" height="452" rx="16" fill="none" stroke="#94d4d4" stroke-width="3" stroke-dasharray="12 10"/>
+  <text x="400" y="230" text-anchor="middle" font-size="40" font-weight="700" fill="#357572">DNI (frente)</text>
+  <text x="400" y="280" text-anchor="middle" font-size="22" fill="#6f6f71">Documento de ejemplo (datos mock)</text>
+</svg>

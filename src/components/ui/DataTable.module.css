@@ -1,0 +1,123 @@
+.table {
+  background: var(--white);
+  border-radius: 18px;
+  border: 1px solid var(--line);
+  overflow: hidden;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: var(--cols);
+  gap: 12px;
+  padding: 16px 22px;
+  border-bottom: 1px solid var(--line);
+  align-items: center;
+}
+
+.headRow {
+  padding: 14px 22px;
+}
+
+.th {
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--gray);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.bodyRow {
+  cursor: pointer;
+  transition: background-color 0.12s;
+}
+
+.bodyRow:hover {
+  background: #fbfbfa;
+}
+
+.bodyRow:focus-visible {
+  outline: 2px solid var(--teal);
+  outline-offset: -2px;
+}
+
+.cell {
+  min-width: 0;
+}
+
+.chevron {
+  display: flex;
+  justify-content: flex-end;
+  color: var(--chevron);
+}
+
+.empty {
+  padding: 60px 22px;
+  text-align: center;
+  color: var(--gray);
+  font-size: 14px;
+}
+
+.error {
+  padding: 60px 22px;
+  text-align: center;
+  font-size: 14px;
+  color: var(--red-ink);
+}
+
+/* Skeleton */
+.skeleton {
+  height: 14px;
+  border-radius: 6px;
+  background: linear-gradient(90deg, #f1f1f0 25%, #f8f8f7 50%, #f1f1f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.2s infinite linear;
+}
+
+@keyframes shimmer {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
+}
+
+/* Tarjetas (mobile) */
+.cards {
+  display: none;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.card {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+}
+
+.cardEmpty {
+  padding: 40px 10px;
+  text-align: center;
+  color: var(--gray);
+  font-size: 13.5px;
+}
+
+@media (max-width: 1023px) {
+  .table {
+    display: none;
+  }
+
+  .cards {
+    display: flex;
+  }
+}

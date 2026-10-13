@@ -1,0 +1,269 @@
+/* Primitivas de contenido de drawers, modales y listados. */
+
+.pageHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.pageTitle {
+  font-size: 26px;
+  color: var(--dark);
+  margin-bottom: 6px;
+}
+
+.pageSubtitle {
+  color: var(--gray);
+  font-size: 14.5px;
+}
+
+.sectionTitle {
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--gray);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0 0 12px;
+}
+
+.infoGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px 16px;
+  margin: 0;
+}
+
+.infoItem {
+  display: flex;
+  flex-direction: column-reverse;
+  min-width: 0;
+}
+
+.infoLabel {
+  font-size: 11.5px;
+  color: var(--gray);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  margin: 3px 0 0;
+}
+
+.infoValue {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--dark);
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.row {
+  display: flex;
+  gap: 10px;
+}
+
+.primary {
+  font-size: 14.5px;
+  font-weight: 700;
+  color: var(--dark);
+}
+
+.secondary {
+  font-size: 12px;
+  color: var(--gray);
+}
+
+.text13 {
+  font-size: 13px;
+  color: var(--dark);
+}
+
+/* Una línea con "…" (correos largos en tablas). */
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.muted {
+  font-size: 13px;
+  color: var(--gray);
+}
+
+.hint {
+  font-size: 11.5px;
+  color: var(--gray);
+  text-align: center;
+  margin-top: 8px;
+}
+
+/* Opción tipo radio (motivos de pausa, roles) */
+.option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1.5px solid var(--line);
+  border-radius: 11px;
+  padding: 12px 14px;
+  cursor: pointer;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--dark);
+  transition:
+    border-color 0.15s,
+    background-color 0.15s;
+}
+
+.option:has(input:checked) {
+  border-color: var(--teal);
+  background: var(--teal-pale);
+  color: var(--teal-dark);
+}
+
+.option:has(input:focus-visible) {
+  outline: 2px solid var(--teal);
+  outline-offset: 2px;
+}
+
+.option:has(input:disabled) {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.radioDot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 1.5px solid var(--chevron);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.option:has(input:checked) .radioDot {
+  border-color: var(--teal);
+}
+
+.option:has(input:checked) .radioDot::after {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--teal);
+}
+
+/* Campo de formulario */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.field label {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--dark);
+}
+
+.field input {
+  border: 1.5px solid var(--line);
+  border-radius: 10px;
+  padding: 11px 13px;
+  font-size: 13.5px;
+  color: var(--dark);
+  transition:
+    border-color 0.15s,
+    box-shadow 0.15s;
+}
+
+.field input:focus {
+  outline: none;
+  border-color: var(--teal);
+  box-shadow: 0 0 0 3px rgba(86, 165, 161, 0.15);
+}
+
+.formError {
+  font-size: 12.5px;
+  color: var(--red-ink);
+  font-weight: 500;
+}
+
+.placeholderBox {
+  border: 1.5px dashed var(--line);
+  border-radius: 16px;
+  padding: 22px;
+  text-align: center;
+  color: var(--gray);
+  font-size: 13px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.notice {
+  background: var(--yellow-pale);
+  border-radius: 12px;
+  padding: 12px 14px;
+  font-size: 12.5px;
+  color: var(--yellow-ink);
+  font-weight: 600;
+}
+
+@media (max-width: 1023px) {
+  .pageTitle {
+    font-size: 21px;
+    margin-bottom: 4px;
+  }
+
+  .pageSubtitle {
+    font-size: 13px;
+  }
+
+  .sectionTitle {
+    font-size: 11px;
+    margin-bottom: 10px;
+  }
+
+  .infoGrid {
+    gap: 12px 14px;
+  }
+
+  .infoLabel {
+    font-size: 11px;
+    margin-top: 2px;
+  }
+
+  .infoValue {
+    font-size: 13.5px;
+  }
+
+  .secondary {
+    font-size: 11.5px;
+  }
+
+  .option {
+    font-size: 13px;
+    padding: 11px 13px;
+  }
+
+  .placeholderBox {
+    border-radius: 14px;
+    padding: 18px;
+    font-size: 12.5px;
+    gap: 8px;
+  }
+
+  .notice {
+    font-size: 12px;
+    border-radius: 11px;
+    padding: 11px 13px;
+  }
+}

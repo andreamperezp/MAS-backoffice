@@ -1,40 +1,68 @@
+/*
+ * Tokens del diseño "MAS – Backoffice de afiliaciones".
+ * Breakpoint único: < 1024px usa el layout mobile (top bar + bottom nav).
+ */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --teal: #56a5a1;
+  --teal-dark: #357572;
+  --teal-light: #94d4d4;
+  --teal-pale: #eaf5f4;
+  --yellow: #f4a721;
+  --yellow-light: #fcc640;
+  --yellow-pale: #fef3e0;
+  --yellow-ink: #8a560b;
+  --dark: #3d3d3b;
+  --gray: #6f6f71;
+  --gray-pale: #eef0ef;
+  --white: #ffffff;
+  --line: #ececeb;
+  --bg: #f7f7f6;
+  --red: #e0554f;
+  --red-ink: #c23d37;
+  --red-pale: #fdf1f0;
+  --placeholder: #b7b7b6;
+  --chevron: #cfcfce;
+  --whatsapp-bg: #e7f6ed;
+  --whatsapp-ink: #18763f;
+
+  --font-sans: var(--font-liebling), system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --shadow-panel: -16px 0 40px rgba(0, 0, 0, 0.18);
+  --shadow-modal: 0 30px 70px rgba(0, 0, 0, 0.3);
+  --backdrop: rgba(61, 61, 59, 0.5);
+
+  --z-drawer: 90;
+  --z-modal: 110;
+  --z-toast: 130;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
 html {
-  height: 100%;
-}
-
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
-  min-height: 100%;
-  display: flex;
-  flex-direction: column;
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-* {
-  box-sizing: border-box;
-  padding: 0;
   margin: 0;
+  font-family: var(--font-sans);
+  color: var(--dark);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+  font-weight: 700;
+  margin: 0;
+}
+
+p {
+  margin: 0;
+  line-height: 1.5;
 }
 
 a {
@@ -42,8 +70,39 @@ a {
   text-decoration: none;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+}
+
+input::placeholder {
+  color: var(--placeholder);
+}
+
+:focus-visible {
+  outline: 2px solid var(--teal);
+  outline-offset: 2px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
   }
 }

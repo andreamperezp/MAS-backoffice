@@ -1,0 +1,111 @@
+.codeChip {
+  font-weight: 700;
+  font-size: 12.5px;
+  color: var(--teal-dark);
+  background: var(--teal-pale);
+  padding: 4px 9px;
+  border-radius: 7px;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.motivo {
+  font-size: 11.5px;
+  color: var(--gray);
+  margin-top: 4px;
+}
+
+.exportLabelMobile {
+  display: none;
+}
+
+.formula {
+  font-size: 11.5px;
+  color: var(--gray);
+  margin: 10px 0 12px;
+}
+
+.exportCount {
+  font-size: 12.5px;
+  color: var(--gray);
+  margin-bottom: 16px;
+}
+
+.fieldLabel {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 8px;
+}
+
+.rango {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.rango input {
+  flex: 1;
+  min-width: 0;
+  border: 1.5px solid var(--line);
+  border-radius: 8px;
+  padding: 9px 10px;
+  font-size: 13px;
+  color: var(--dark);
+}
+
+.rango span {
+  color: var(--gray);
+  font-size: 12px;
+}
+
+.exportFields {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+@media (max-width: 1023px) {
+  .codeChip {
+    font-size: 11px;
+    padding: 3px 8px;
+    border-radius: 6px;
+  }
+
+  .exportar {
+    width: 100%;
+  }
+
+  .exportLabelDesktop {
+    display: none;
+  }
+
+  .exportLabelMobile {
+    display: inline;
+  }
+
+  .formula {
+    font-size: 11px;
+    margin: 9px 0 12px;
+  }
+
+  .fieldLabel {
+    font-size: 12px;
+    margin-bottom: 7px;
+  }
+
+  .rango {
+    gap: 8px;
+  }
+
+  .rango input {
+    padding: 8px;
+    font-size: 12.5px;
+  }
+
+  .exportFields {
+    gap: 14px;
+    margin-bottom: 16px;
+  }
+}
