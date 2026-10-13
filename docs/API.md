@@ -75,20 +75,20 @@ Autenticación server-to-server: `Authorization: Bearer ${PORTAL_API_TOKEN}`. Fe
 Todas requieren sesión (cookie `mas_session`). Errores con forma `{ "error": { "codigo", "mensaje" } }`:
 `401 NO_AUTENTICADO`, `403 SIN_PERMISO`, `404 NO_ENCONTRADO`, `409 CONFLICTO | TRANSICION_INVALIDA`, `422 VALIDACION`, `502 UPSTREAM`.
 
-| Método  | Ruta                          | Rol        | Descripción                                                                       |
-| ------- | ----------------------------- | ---------- | --------------------------------------------------------------------------------- |
-| `GET`   | `/api/solicitudes`            | todos      | Listado filtrado                                                                  |
-| `PATCH` | `/api/solicitudes/{id}`       | todos      | `{ accion: aprobar \| rechazar \| volver_a_pendiente }`. Aprobar crea el asociado |
-| `GET`   | `/api/asociados`              | todos      | Listado filtrado                                                                  |
-| `GET`   | `/api/asociados/exportar`     | todos      | CSV (`;`, UTF-8 con BOM) con los mismos filtros                                   |
-| `PATCH` | `/api/asociados/{id}`         | todos      | `{ accion: pausar, motivo } \| { accion: reactivar } \| { accion: desactivar }`   |
-| `GET`   | `/api/panel`                  | superadmin | KPIs y usuarios recientes                                                         |
-| `GET`   | `/api/usuarios`               | superadmin | Listado filtrado                                                                  |
-| `POST`  | `/api/usuarios`               | superadmin | Alta + invitación con contraseña temporal                                         |
-| `PATCH` | `/api/usuarios/{id}`          | superadmin | `{ rol?, estado? }`                                                               |
-| `POST`  | `/api/usuarios/{id}/password` | superadmin | Genera contraseña temporal (se devuelve una sola vez)                             |
-| `PUT`   | `/api/usuarios/{id}/password` | superadmin | Envía por correo la contraseña temporal vigente                                   |
-| `GET`   | `/api/auth/salir`             | —          | Borra la cookie y redirige al login                                               |
+| Método  | Ruta                          | Rol        | Descripción                                                                                  |
+| ------- | ----------------------------- | ---------- | -------------------------------------------------------------------------------------------- |
+| `GET`   | `/api/solicitudes`            | todos      | Listado filtrado                                                                             |
+| `PATCH` | `/api/solicitudes/{id}`       | todos      | `{ accion: aprobar \| rechazar \| volver_a_pendiente }`. Aprobar crea el asociado            |
+| `GET`   | `/api/asociados`              | todos      | Listado filtrado                                                                             |
+| `GET`   | `/api/asociados/exportar`     | todos      | CSV (`;`, UTF-8 con BOM) con los mismos filtros                                              |
+| `PATCH` | `/api/asociados/{id}`         | todos      | `{ accion: pausar, motivo } \| { accion: reactivar } \| { accion: desactivar }`              |
+| `GET`   | `/api/panel`                  | todos      | KPIs del panel. `usuarios` y `usuariosRecientes` solo para superadmin (`null` para el resto) |
+| `GET`   | `/api/usuarios`               | superadmin | Listado filtrado                                                                             |
+| `POST`  | `/api/usuarios`               | superadmin | Alta + invitación con contraseña temporal                                                    |
+| `PATCH` | `/api/usuarios/{id}`          | superadmin | `{ rol?, estado? }`                                                                          |
+| `POST`  | `/api/usuarios/{id}/password` | superadmin | Genera contraseña temporal (se devuelve una sola vez)                                        |
+| `PUT`   | `/api/usuarios/{id}/password` | superadmin | Envía por correo la contraseña temporal vigente                                              |
+| `GET`   | `/api/auth/salir`             | —          | Borra la cookie y redirige al login                                                          |
 
 ### Transiciones de estado válidas
 

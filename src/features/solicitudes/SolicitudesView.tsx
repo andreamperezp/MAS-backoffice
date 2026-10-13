@@ -1,5 +1,6 @@
 'use client';
 
+import { useSearchParams } from 'next/navigation';
 import { useState } from 'react';
 import { Badge, EstadoSolicitudBadge, SegmentoBadge } from '@/components/ui/Badge';
 import { DataTable, type Columna } from '@/components/ui/DataTable';
@@ -7,7 +8,7 @@ import { detailStyles as d, PageHeader } from '@/components/ui/Detail';
 import { PillGroup, SearchInput, Toolbar, ToolbarDivider, type Opcion } from '@/components/ui/Filters';
 import { Icon } from '@/components/ui/Icon';
 import { formatDni, formatFecha } from '@/domain/format';
-import type { FiltroSolicitudes } from '@/domain/schemas';
+import { filtroSolicitudesSchema, type FiltroSolicitudes } from '@/domain/schemas';
 import type { Segmento, Solicitud } from '@/domain/types';
 import { mensajeDeError } from '@/lib/api';
 import { useDebouncedValue } from '@/lib/hooks';
@@ -92,7 +93,9 @@ function Tarjeta({ s }: { s: Solicitud }) {
 }
 
 export function SolicitudesView() {
-  const [estado, setEstado] = useState<FiltroSolicitudes['estado']>('pendiente');
+  // `?estado=rechazada` permite llegar con el filtro aplicado (accesos del Panel).
+  const estadoInicial = filtroSolicitudesSchema.shape.estado.parse(useSearchParams().get('estado') ?? undefined);
+  const [estado, setEstado] = useState<FiltroSolicitudes['estado']>(estadoInicial);
   const [segmento, setSegmento] = useState<FiltroSolicitudes['segmento']>('todos');
   const [busqueda, setBusqueda] = useState('');
   const q = useDebouncedValue(busqueda.trim()) || undefined;

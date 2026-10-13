@@ -104,6 +104,11 @@ export type ConteosUsuarios = Record<EstadoUsuario, number>;
 export interface ResumenPanel {
   asociados: ConteosAsociados;
   solicitudes: { pendientes: number; rechazadas: number };
-  usuarios: ConteosUsuarios;
-  usuariosRecientes: Usuario[];
+  /** Asociados dados de alta en el mes en curso. */
+  altasDelMes: number;
+  /** Pendientes más antiguas (cola FIFO), para el panel del administrador. */
+  solicitudesEnEspera: Solicitud[];
+  /** Solo para superadmin; `null` para el resto de los roles. */
+  usuarios: ConteosUsuarios | null;
+  usuariosRecientes: Usuario[] | null;
 }
